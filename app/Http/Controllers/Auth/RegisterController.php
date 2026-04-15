@@ -17,8 +17,9 @@ class RegisterController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function create()
     {
+       return  User::all()->count() > 0 ? redirect()->route('home') : null; // Disable registration if users exist
         return view('auth.register');
     }
 

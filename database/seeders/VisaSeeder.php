@@ -16,62 +16,20 @@ class VisaSeeder extends Seeder
     {
         // Create demo visas
         Visa::create([
-            'visa_number' => 'DEMO-VISA-001',
-            'firstname' => 'Rony',
-            'surname' => 'Ahmed',
-            'date_of_birth' => '1995-05-20',
+            'visa_number' => 'VZPCKXS3PS7A21',
+            'firstname' => 'PROSHANTA CHANDRA',
+            'surname' => 'DAS',
+            'date_of_birth' => '2001-09-14',
             'citizenship' => 'Bangladesh',
-            'passport_number' => 'BP12345678',
-            'visa_status' => 'Active',
-            'visa_validity' => '2025-12-31',
-            'visa_type' => 'Tourist',
-            'visit_purpose' => 'Tourism and Sightseeing',
-            'photo_path' => 'images/asdf.jpg',
-        ]);
-
-        Visa::create([
-            'visa_number' => 'DEMO-VISA-002',
-            'firstname' => 'John',
-            'surname' => 'Doe',
-            'date_of_birth' => '1990-01-01',
-            'citizenship' => 'USA',
-            'passport_number' => 'P12345678',
-            'visa_status' => 'Active',
-            'visa_validity' => '2024-12-31',
-            'visa_type' => 'Business',
-            'visit_purpose' => 'Business Meeting',
-            'photo_path' => 'images/asdf.jpg',
-        ]);
-
-        Visa::create([
-            'visa_number' => 'DEMO-VISA-003',
-            'firstname' => 'Alice',
-            'surname' => 'Smith',
-            'date_of_birth' => '1992-03-15',
-            'citizenship' => 'Canada',
-            'passport_number' => 'CA98765432',
-            'visa_status' => 'Pending',
-            'visa_validity' => '2026-06-30',
-            'visa_type' => 'Student',
-            'visit_purpose' => 'Higher Education',
-            'photo_path' => 'images/asdf.jpg',
-        ]);
-
-        Visa::create([
-            'visa_number' => 'DEMO-VISA-004',
-            'firstname' => 'Maria',
-            'surname' => 'Garcia',
-            'date_of_birth' => '1988-07-10',
-            'citizenship' => 'Spain',
-            'passport_number' => 'ES55443322',
-            'visa_status' => 'Expired',
-            'visa_validity' => '2022-12-31',
-            'visa_type' => 'Tourist',
-            'visit_purpose' => 'Vacation',
+            'passport_number' => 'A05239059',
+            'visa_status' => 'Issued Visa',
+            'visa_validity' => '2026-08-17',
+            'visa_type' => 'C-T',
+            'visit_purpose' => 'Employment',
             'photo_path' => 'images/asdf.jpg',
         ]);
 
         // Create additional visas using factory
-        Visa::factory()->count(5)->create();
+        // Visa::factory()->count(1)->create();
     }
 }

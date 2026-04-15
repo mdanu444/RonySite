@@ -129,7 +129,9 @@
                                     <input type="text" id="visa"><br><br>
                                 </div>
 
-                                <img src={{ asset('') }} id="cap"><br>
+
+
+                                <img src={{ route('captcha.generate') }} id="cap"><br>
                                 <div>
                                     <button type="button" onclick="reloadCaptcha()" class="captcha-refresh"
                                         style="all: unset; color: #2f66b3; text-decoration: underline; cursor: pointer; font-size: 14px;">
@@ -259,13 +261,13 @@
 
                             },
                             success: function(res) {
-                                if (res.error) {
-                                    $("#errorBox").text(res.error).show();
-                                    $("#cap").attr("src", "captcha.php?" + Date.now());
-                                    return;
-                                }
                                 // console.log(res);
                                 // return;
+                                if (res &&(res.error && (res.error != ""))) {
+                                    $("#errorBox").text(res.error).show();
+                                    reloadCaptcha();
+                                    return;
+                                }
                                 $("#formPanel").hide();
                                 $("#resultPanel").show();
 
@@ -293,6 +295,7 @@
                     }
 
                     function resetSearch() {
+                        reloadCaptcha();
                         $("#resultPanel").hide();
                         $("#formPanel").show();
                         $("#visa").val("");
@@ -301,7 +304,9 @@
                     }
 
                     function reloadCaptcha() {
-                        document.getElementById("cap").src = "captcha.php?" + Date.now();
+                        // URL এর শেষে Math.random() বা টাইমস্ট্যাম্প যোগ করলে প্রতিবার নতুন ইমেজ লোড হবে
+                        var captchaUrl = "{{ route('captcha.generate') }}";
+                        document.getElementById("cap").src = captchaUrl + "?" + Math.random();
                     }
                 </script>
 

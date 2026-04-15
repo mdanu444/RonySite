@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Visa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class VisaSearchController extends Controller
 {
@@ -72,6 +73,7 @@ class VisaSearchController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Visa $visa)
+
     {
         $validated = $request->validate([
             'visa_number' => 'required|unique:visas,visa_number,' . $visa->id . '|string|max:100',
@@ -88,7 +90,15 @@ class VisaSearchController extends Controller
         ]);
 
         if ($request->hasFile('photo_path')) {
-            $validated['photo_path'] = $request->file('photo_path')->store('visa-photos', 'public');
+
+        $validated['photo_path'] = $request->file('photo_path')->store('visa-photos', 'public');
+
+        $old_image_path = public_path('storage/' . $visa->photo_path);
+        if (File::exists($old_image_path)) {
+            //File::delete($image_path);
+            unlink($old_image_path);
+        }
+
         }
 
         $visa->update($validated);
@@ -101,6 +111,15 @@ class VisaSearchController extends Controller
      */
     public function destroy(Visa $visa)
     {
+
+        $image_path = public_path('storage/' . $visa->photo_path);
+        File::exists($image_path);
+
+        if (File::exists($image_path)) {
+            //File::delete($image_path);
+            unlink($image_path);
+        }
+
         $visa->delete();
         return redirect()->route('visas.index')->with('success', 'Visa deleted successfully!');
     }

@@ -19,13 +19,13 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Create test users
-        User::factory(5)->create();
+        // User::factory(1)->create();
 
         // Create a test user
         User::factory()->create([
             'name' => 'Demo User',
             'email' => 'demo@example.com',
-            'password' => Hash::make('password123'),
+            'password' => Hash::make('Abcd@@12'),
             'phone_number' => '+880-1234-567890',
             'date_of_birth' => '1990-01-15',
             'gender' => 'Male',
